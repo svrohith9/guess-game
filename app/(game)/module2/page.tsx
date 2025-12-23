@@ -13,7 +13,7 @@ import { flushQueue, queueWrite, saveState, loadState } from "@/lib/storage";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 const PROGRESS_KEY = "doc-progress";
-const VALID_TYPES: FlashCardType["type"][] = ["definition", "fill", "mcq", "truefalse"];
+const VALID_TYPES: FlashCardType["type"][] = ["mcq", "truefalse"];
 
 export default function Module2Page() {
   const { parseFile } = useDocParser();
@@ -238,7 +238,7 @@ export default function Module2Page() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Question Styles</p>
               <div className="mt-2 flex flex-wrap gap-2">
-                {(["fill", "truefalse", "mcq"] as const).map((type) => (
+                {(["truefalse", "mcq"] as const).map((type) => (
                   <button
                     key={type}
                     onClick={() => {

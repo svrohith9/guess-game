@@ -11,13 +11,11 @@ type FlashCardProps = {
 
 export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
   const [flipped, setFlipped] = useState(false);
-  const [answer, setAnswer] = useState("");
   const [seconds, setSeconds] = useState(15);
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
     setFlipped(false);
-    setAnswer("");
     setSeconds(15);
   }, [card]);
 
@@ -40,11 +38,22 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
     return () => clearInterval(timer);
   }, [card, timed, onSubmit]);
 
-  const handleSubmit = () => {
-    const normalized = answer.trim().toLowerCase();
-    const isCorrect = normalized === card.back.trim().toLowerCase();
-    onSubmit(isCorrect);
-  };
+  const baseOptions = card.options && card.options.length ? card.options : [];
+  const trueFalseOptions = ["True", "False"];
+  const derivedOptions =
+    card.type === "truefalse"
+      ? trueFalseOptions
+      : baseOptions.length >= 4
+      ? baseOptions.slice(0, 4)
+      : [card.back, "Option B", "Option C", "Option D"];
+  const answerIndex =
+    typeof card.answerIndex === "number"
+      ? card.answerIndex
+      : card.type === "truefalse"
+      ? card.back.trim().toLowerCase().startsWith("f")
+        ? 1
+        : 0
+      : 0;
 
   return (
     <div className="relative">
@@ -61,20 +70,16 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Prompt</p>
           <h2 className="text-xl font-semibold text-white">{card.front}</h2>
           <div className="mt-6 grid gap-3">
-            <input
-              className="input input-bordered w-full bg-base-200"
-              placeholder="Type your answer"
-              value={answer}
-              onChange={(event) => setAnswer(event.target.value)}
-              aria-label="Answer input"
-            />
-            <button
-              onClick={handleSubmit}
-              className="btn rounded-full bg-emerald-400 text-black"
-              aria-label="Submit answer"
-            >
-              Submit Answer
-            </button>
+            {derivedOptions.map((option, index) => (
+              <button
+                key={`${option}-${index}`}
+                onClick={() => onSubmit(index === answerIndex)}
+                className="btn rounded-full bg-base-200 text-white"
+                aria-label={`Answer option ${index + 1}`}
+              >
+                {option}
+              </button>
+            ))}
             <button
               onClick={() => setFlipped(true)}
               className="btn btn-ghost"

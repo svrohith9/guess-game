@@ -14,6 +14,8 @@ export type FlashCard = {
   front: string;
   back: string;
   type: "definition" | "fill" | "mcq" | "truefalse";
+  options?: string[];
+  answerIndex?: number;
   sm2?: {
     interval: number;
     repetition: number;
@@ -84,7 +86,7 @@ export const useStore = create<StoreState>((set) => ({
   flashcards: [],
   currentIndex: 0,
   settings: {
-    types: ["definition", "fill", "mcq", "truefalse"],
+    types: ["truefalse", "mcq"],
     count: 10,
     timed: true
   },

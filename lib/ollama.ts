@@ -87,7 +87,8 @@ export async function generateQuizFromImage(payload: unknown) {
 
 export async function generateFlashcardsFromText(text: string) {
   const prompt =
-    "Return ONLY valid JSON with no commentary. Schema: {flashcards:[{front:\"...\",back:\"...\",type:\"definition|fill|mcq|truefalse\"},...]}\n\n" +
+    "Return ONLY valid JSON with no commentary. Use only types: mcq or truefalse. For mcq, include 4 options and answerIndex. For truefalse, include options [\"True\",\"False\"] and answerIndex.\n" +
+    "Schema: {flashcards:[{front:\"...\",back:\"...\",type:\"mcq|truefalse\",options:[\"A\",\"B\",\"C\",\"D\"],answerIndex:0},...]}\n\n" +
     "Input:\n" +
     text;
   try {
@@ -95,12 +96,7 @@ export async function generateFlashcardsFromText(text: string) {
     return safeJsonParse(response, fallbackFlashcards(text));
   } catch (error) {
     console.error("Ollama fallback", error, "Hint: run `ollama pull llama3:latest` and start Ollama.");
-    return {
-      flashcards: [
-        { front: "Sample term", back: "Sample definition", type: "definition" },
-        { front: "2 + 2 =", back: "4", type: "fill" }
-      ]
-    };
+    return fallbackFlashcards(text);
   }
 }
 
@@ -160,15 +156,23 @@ function fallbackFlashcards(text: string) {
   if (!lines.length) {
     return {
       flashcards: [
-        { front: "Sample term", back: "Sample definition", type: "definition" }
+        {
+          front: "The sky is blue.",
+          back: "True",
+          type: "truefalse",
+          options: ["True", "False"],
+          answerIndex: 0
+        }
       ]
     };
   }
   return {
     flashcards: lines.map((line) => ({
       front: line,
-      back: "Review this detail.",
-      type: "definition"
+      back: "True",
+      type: "truefalse",
+      options: ["True", "False"],
+      answerIndex: 0
     }))
   };
 }
