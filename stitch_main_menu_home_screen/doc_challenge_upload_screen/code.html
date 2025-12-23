@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doc Challenge Upload</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1a3022",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neon-shadow {
+            box-shadow: 0 0 20px rgba(19, 236, 91, 0.15);
+        }
+        .neon-border {
+            border-color: rgba(19, 236, 91, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display antialiased selection:bg-primary selection:text-black">
+<div class="relative flex h-full w-full flex-col overflow-x-hidden pb-10">
+<!-- TopAppBar -->
+<div class="sticky top-0 z-50 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 px-4 py-4 backdrop-blur-md">
+<button class="flex size-10 items-center justify-center rounded-full bg-transparent hover:bg-black/5 dark:text-white dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<h2 class="text-neutral-900 dark:text-white text-lg font-bold leading-tight tracking-tight">New Challenge</h2>
+<div class="size-10"></div> <!-- Spacer for centering -->
+</div>
+<!-- Headline & Instructions -->
+<div class="flex flex-col px-6 pt-4 pb-2 text-center">
+<h1 class="text-neutral-900 dark:text-white text-3xl font-extrabold leading-tight tracking-tight mb-3">
+                Upload Source<br/><span class="text-primary">Material</span>
+</h1>
+<p class="text-neutral-500 dark:text-neutral-400 text-base font-normal leading-relaxed">
+                Feed the AI your documents to generate your next battle scenario.
+            </p>
+</div>
+<!-- Upload Zone (EmptyState) -->
+<div class="flex flex-col p-4 w-full max-w-md mx-auto">
+<div class="group relative flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-dashed border-neutral-300 dark:border-primary/30 bg-white dark:bg-surface-dark px-6 py-12 transition-all hover:border-primary hover:bg-primary/5 dark:hover:border-primary dark:hover:bg-primary/5 neon-shadow">
+<!-- Background Pulse Effect -->
+<div class="absolute inset-0 z-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 rounded-xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center gap-4">
+<div class="flex size-20 items-center justify-center rounded-full bg-primary/10 text-primary mb-2 ring-1 ring-primary/20 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 40px;">cloud_upload</span>
+</div>
+<div class="text-center space-y-1">
+<p class="text-neutral-900 dark:text-white text-xl font-bold tracking-tight">Drag &amp; Drop here</p>
+<p class="text-neutral-500 dark:text-neutral-400 text-sm">or browse your files</p>
+</div>
+<p class="text-neutral-400 dark:text-neutral-500 text-xs font-medium bg-neutral-100 dark:bg-black/20 px-3 py-1 rounded-full">
+                        Max file size: 10MB
+                    </p>
+</div>
+<button class="relative z-10 mt-2 flex w-full max-w-[200px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-primary h-12 px-6 text-black text-sm font-bold shadow-lg shadow-primary/25 hover:bg-[#0fd651] hover:shadow-primary/40 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-size: 20px;">folder_open</span>
+<span>Browse Files</span>
+</button>
+</div>
+</div>
+<!-- Chips: Supported Formats -->
+<div class="flex flex-col items-center gap-2 px-4 pb-8">
+<span class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500 font-bold">Supported Formats</span>
+<div class="flex flex-wrap justify-center gap-3">
+<div class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-neutral-200 dark:bg-surface-dark border border-transparent dark:border-primary/20 px-4 transition-colors hover:border-primary/50">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">picture_as_pdf</span>
+<p class="text-neutral-700 dark:text-neutral-200 text-sm font-bold">PDF</p>
+</div>
+<div class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-neutral-200 dark:bg-surface-dark border border-transparent dark:border-primary/20 px-4 transition-colors hover:border-primary/50">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">description</span>
+<p class="text-neutral-700 dark:text-neutral-200 text-sm font-bold">TXT</p>
+</div>
+<div class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-neutral-200 dark:bg-surface-dark border border-transparent dark:border-primary/20 px-4 transition-colors hover:border-primary/50">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">table_chart</span>
+<p class="text-neutral-700 dark:text-neutral-200 text-sm font-bold">CSV</p>
+</div>
+</div>
+</div>
+<!-- Recent / Templates Section -->
+<div class="mt-auto px-4 w-full max-w-md mx-auto">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-neutral-900 dark:text-white text-lg font-bold">Quick Start</h3>
+<button class="text-primary text-sm font-semibold hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Template Item 1 -->
+<button class="group flex items-center gap-4 rounded-xl bg-white dark:bg-surface-dark p-3 pr-4 shadow-sm border border-transparent hover:border-primary/30 transition-all active:scale-[0.98]">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div class="flex flex-1 flex-col items-start">
+<p class="text-neutral-900 dark:text-white font-bold text-sm">History: World War II</p>
+<p class="text-neutral-500 dark:text-neutral-400 text-xs">PDF • 2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-neutral-400 group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<!-- Template Item 2 -->
+<button class="group flex items-center gap-4 rounded-xl bg-white dark:bg-surface-dark p-3 pr-4 shadow-sm border border-transparent hover:border-primary/30 transition-all active:scale-[0.98]">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div class="flex flex-1 flex-col items-start">
+<p class="text-neutral-900 dark:text-white font-bold text-sm">Biology: Cell Structure</p>
+<p class="text-neutral-500 dark:text-neutral-400 text-xs">TXT • 15 KB</p>
+</div>
+<span class="material-symbols-outlined text-neutral-400 group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

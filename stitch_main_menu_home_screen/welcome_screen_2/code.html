@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlashGame Welcome Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#ffffff",
+              "background-dark": "#0a0c0a",
+              "surface-dark": "#161816",
+              "surface-light": "#f3f5f3",
+              "text-main": "#111418",
+              "text-muted": "#637588",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.75rem", 
+                "lg": "1rem", 
+                "xl": "1.5rem", 
+                "full": "9999px"
+            },
+            boxShadow: {
+                'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                'soft-hover': '0 8px 30px rgba(0, 0, 0, 0.08)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+          min-height: max(844px, 100dvh);}
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<header class="flex items-center justify-between px-6 pt-8 pb-4 w-full max-w-md mx-auto z-10">
+<div class="flex items-center gap-2 group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-[28px]">flash_on</span>
+<h2 class="text-text-main dark:text-white text-lg font-bold tracking-tight">FlashGame</h2>
+</div>
+<div class="flex items-center">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-muted dark:text-[#92c9a4] transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-6 py-4 gap-10 w-full max-w-md mx-auto">
+<div class="flex flex-col items-center text-center space-y-6">
+<div class="relative size-64 rounded-full overflow-hidden shadow-soft dark:shadow-black/20 border-4 border-surface-light dark:border-surface-dark">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqlD5tCWxbwYYodRCwv39g1_BA5w4Sz8szgWphZhNF-dC86n2FFIHswkOsSy1bZ6j564AaguMGFEVfFuoVBKLll_EhPXj4NqWGADI582HFKf0iERbtWJS6WX8x9h_vqy2aHhUiIgtHFGpPQ7dzH-4BIJGu2p2PBln_FoS2a_Yhq_ayBDBS0uVkg4b3lEl_TL7aDN3-zH9nCw_yqV76kha3wDnJTrWqgBKnIYRhCQBpZdQFhBHRLBHkvNdrm1tCaVDbYdnySnYReLgA');"></div>
+<div class="absolute inset-0 bg-black/10 dark:bg-black/40"></div>
+</div>
+<div class="space-y-3 max-w-[300px]">
+<h1 class="text-text-main dark:text-white text-3xl font-bold tracking-tight">
+                        Welcome back
+                    </h1>
+<p class="text-text-muted dark:text-gray-400 text-sm font-medium leading-relaxed">
+                        Ready to learn? Choose your challenge mode below to get started.
+                    </p>
+</div>
+</div>
+<div class="w-full flex flex-col gap-4 mt-4">
+<button class="group flex w-full cursor-pointer items-center p-4 bg-surface-light dark:bg-surface-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-2xl transition-all duration-200 border border-transparent hover:border-gray-200 dark:hover:border-white/10">
+<div class="flex items-center justify-center size-12 rounded-xl bg-white dark:bg-white/5 text-primary shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+<div class="flex flex-col items-start ml-4 flex-1">
+<span class="text-text-main dark:text-white text-base font-semibold">Picture Challenge</span>
+<span class="text-text-muted dark:text-gray-500 text-xs">Snap objects to create cards</span>
+</div>
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors text-[20px]">arrow_forward</span>
+</button>
+<button class="group flex w-full cursor-pointer items-center p-4 bg-surface-light dark:bg-surface-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-2xl transition-all duration-200 border border-transparent hover:border-gray-200 dark:hover:border-white/10">
+<div class="flex items-center justify-center size-12 rounded-xl bg-white dark:bg-white/5 text-primary shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<div class="flex flex-col items-start ml-4 flex-1">
+<span class="text-text-main dark:text-white text-base font-semibold">Doc Challenge</span>
+<span class="text-text-muted dark:text-gray-500 text-xs">Scan documents to study</span>
+</div>
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors text-[20px]">arrow_forward</span>
+</button>
+</div>
+</main>
+<footer class="p-6 pb-10 text-center w-full max-w-md mx-auto">
+<a class="inline-flex items-center justify-center gap-2 text-text-muted dark:text-gray-500 hover:text-text-main dark:hover:text-white transition-colors text-xs font-semibold tracking-wide" href="#">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>
+<span>View Progress</span>
+</a>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-base-100 text-base-content font-body;
+}
+
+.app-shell {
+  background: radial-gradient(circle at top, rgba(80, 99, 130, 0.35), transparent 55%),
+    linear-gradient(180deg, rgba(11, 17, 27, 0.9), rgba(5, 9, 15, 0.95));
+  min-height: 100vh;
+}
+
+.card-surface {
+  @apply bg-base-200/70 border border-base-300/40 rounded-2xl shadow-xl backdrop-blur;
+}
+
+@layer utilities {
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+}

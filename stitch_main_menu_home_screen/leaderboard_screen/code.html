@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leaderboard Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "primary-dark": "#0ea640",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+              "surface-dark": "#162e1e",
+              "surface-light": "#ffffff"
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-gray-900 dark:text-white transition-colors duration-200">
+<div class="relative mx-auto flex h-screen w-full max-w-md flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<header class="flex shrink-0 items-center justify-between p-4 pt-6 bg-background-light dark:bg-background-dark sticky top-0 z-20">
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Leaderboard</h1>
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</header>
+<!-- Filter Chips -->
+<div class="shrink-0 px-4 pb-2 z-10 bg-background-light dark:bg-background-dark">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="shrink-0 rounded-full bg-primary px-5 py-2 text-sm font-bold text-black shadow-[0_0_15px_rgba(19,236,91,0.3)] transition transform active:scale-95">
+                    Global
+                </button>
+<button class="shrink-0 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-white/10 px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition">
+                    Friends
+                </button>
+<button class="shrink-0 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-white/10 px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition">
+                    History
+                </button>
+<button class="shrink-0 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-white/10 px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition">
+                    Science
+                </button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto no-scrollbar pb-24">
+<!-- Podium Section -->
+<div class="relative mt-4 flex items-end justify-center gap-2 px-4 pb-8 pt-4">
+<!-- Rank 2 -->
+<div class="flex flex-col items-center gap-2 pb-4">
+<span class="font-bold text-gray-500 dark:text-gray-400">2</span>
+<div class="relative">
+<div class="h-20 w-20 rounded-full border-4 border-gray-200 dark:border-surface-dark bg-cover bg-center shadow-lg" data-alt="Portrait of a young woman with glasses" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzbYCr4iJsIpYK60GZBG4Rk0u4IaoBzoR8o75TiH-owy-Mbi7JPp1ooiU9t2iZhyDtvPtmUs43yzC71tPaYzCPie-ZsL5YxSkqFXyvSXfdvTCUbd9f3DDjj2vunDjgBCvrd-yD63gouy5REL0s_uP_tnVaOo7TuEr1v0laNo_rrhJx2aZQqz2jskJ8UBSpkzzt2hecaUjYev-El_TUxv4iCGmfG8ygRJUnjfClG-LFEf1A_FEnxy7qIVpbsK6sLlsam4tR3c_HwPNM');"></div>
+<div class="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark px-2 py-0.5 text-xs font-bold shadow-sm border border-gray-100 dark:border-white/5">
+<span class="material-symbols-outlined text-sm text-gray-400 mr-1" style="font-size: 14px;">arrow_drop_down</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold text-gray-900 dark:text-white">Sarah</p>
+<p class="text-xs font-medium text-primary">3,850 XP</p>
+</div>
+</div>
+<!-- Rank 1 -->
+<div class="flex flex-col items-center gap-2 z-10 -mx-2 mb-6 scale-110">
+<div class="relative">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 text-3xl">👑</span>
+<div class="h-24 w-24 rounded-full border-4 border-primary bg-cover bg-center shadow-[0_0_20px_rgba(19,236,91,0.4)]" data-alt="Portrait of a smiling man with a beard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpqJ0cvYaqX7XwxoyMKfQgeY9JilM0D87cno_vNE9KsG4IGiyr075wKplANjeyIV62gxNAkGA5JFSBuLNVUVP5-XZGi22gbJWTnCQBUyTCDvhJi-Ntn22_Y_cFQhNRB3_IsBYUxib4X5A-BlSeeNKrw28YaZb99zJJgpvSMTEOYOZkBjbjfqQ4ONTXoEVz-GIOT2u6lYPlDmc3DhN1pUmHHQiEJa0Dnxaq_Pr5LRfm7ywmWEBux7PfyLKfTHwv6xWpvNFxU6-ZqqA9');"></div>
+<div class="absolute -bottom-3 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full bg-primary px-3 py-1 shadow-md">
+<span class="text-xs font-extrabold text-black">#1</span>
+</div>
+</div>
+<div class="text-center pt-2">
+<p class="text-base font-extrabold text-gray-900 dark:text-white">Michael</p>
+<p class="text-sm font-bold text-primary">4,500 XP</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex flex-col items-center gap-2 pb-4">
+<span class="font-bold text-gray-500 dark:text-gray-400">3</span>
+<div class="relative">
+<div class="h-20 w-20 rounded-full border-4 border-gray-200 dark:border-surface-dark bg-cover bg-center shadow-lg" data-alt="Portrait of a man with short hair looking away" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDU7skHCxHPtZuEoaRXyDXMeUmBowOPPtEeIWVoqgPYt7qpqFDOR-QJD8YSrFwaDXwYfvgv9-9VEQm_GhCmn6ANomG2HXSewIuicBHgyFiszJqiVy14spjAIv8TKXK0m3uQxbVc0z-__TiOklXCv76YF2uTlBTgmp3NwuKSFmRcove0c3-0KlknlZWZTmsz-HlADqsZzoc5iy83e2lEIvoH-VrAK7T7fyHlREJjvS9S750Nw43Nbp5qVO0rTHZUtpxzL3PhumxJdV_I');"></div>
+<div class="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark px-2 py-0.5 text-xs font-bold shadow-sm border border-gray-100 dark:border-white/5">
+<span class="material-symbols-outlined text-sm text-green-500 mr-1" style="font-size: 14px;">arrow_drop_up</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold text-gray-900 dark:text-white">David</p>
+<p class="text-xs font-medium text-primary">3,700 XP</p>
+</div>
+</div>
+</div>
+<!-- List Header -->
+<div class="px-6 pb-2 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider flex justify-between">
+<span>Rank &amp; Player</span>
+<span>XP Earned</span>
+</div>
+<!-- Ranking List -->
+<div class="flex flex-col gap-2 px-4 pb-4">
+<!-- Item 4 -->
+<div class="group flex items-center justify-between gap-3 rounded-full bg-surface-light dark:bg-surface-dark p-2 pr-5 shadow-sm transition hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex w-8 justify-center text-sm font-bold text-gray-500">4</span>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Portrait of a woman smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBjiZsABigrI778ReU1dK8sODMOOpKply-VCab6hzGP3OxAk9yL_aLdt-Vac8M7awjrcjjuoCzZlleVa7xhVaVBEdZo_jvmL4R7vXS2wsIuED7p1EscL5V8S02IWl6tPXn8p0_oOexZ6bCDQ6DxQLUV9Ri4xLXKJjX56gZIW_a_VP68BSKM_NFTtlV8PiyUQONoR6YldsGt1D1JATp83NoN5vQQmIVf8V1O66K8oKvWt7FdAMGSkjQbXMqomFJs49w_jxCr8i7HwcI');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-900 dark:text-white">Jessica Chang</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-size: 12px;">trending_up</span>
+<span class="text-[10px] text-gray-500">Since last week</span>
+</div>
+</div>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">3,500</span>
+</div>
+<!-- Item 5 -->
+<div class="group flex items-center justify-between gap-3 rounded-full bg-surface-light dark:bg-surface-dark p-2 pr-5 shadow-sm transition hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex w-8 justify-center text-sm font-bold text-gray-500">5</span>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Portrait of a man with glasses" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlY5xaI-V5AjxIuDXyLqxAYeGE6zrXcEQ5qJ22vd4DUcPvP0mo07fxxTY3KT706AiNvCcswPXfjAtoIdQg1l93IV4VPfIHX7Qqntq8ktGtRHMIBEp5EBH6y9u6DWdLWkYzHPCVTO4fn_Vxk5mKv6VvIHFPsLP7kERk4D1qOqFAwrdYRzzgW_GV0mNSKLWgNgVmhlNl9cE3SmyE66KHYbX7vb4Lb9A-28GmwWEydLOZTh0ZVfe654grkSct_0oCPfbKJHeDXMaAWsQU');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-900 dark:text-white">Robert Fox</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-red-500" style="font-size: 12px;">trending_down</span>
+<span class="text-[10px] text-gray-500">Since yesterday</span>
+</div>
+</div>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">3,420</span>
+</div>
+<!-- Item 6 -->
+<div class="group flex items-center justify-between gap-3 rounded-full bg-surface-light dark:bg-surface-dark p-2 pr-5 shadow-sm transition hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex w-8 justify-center text-sm font-bold text-gray-500">6</span>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Portrait of a woman looking confident" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwBMyRFap-qCiGkMoYmtwYT5-4qTJWQFwe-EatTOA4me387wKBcTwPlBh6-4xMhAzkaSWW_UY529RD9SU_eJVTIumhxI6qSuIHpU7qFE6Fq0jB80roF23FRG5gw3u1_87AoRGyvK_Go2HEypNBRJNVWUTqOAXIYw6oxYkKvWJjQR8WEg60GyEmt87EjAqNe1niL8ub2zGE0qL6TAvixVakSdcSyogqVkBrImJOj2inndXow-sZwM24gkQrIZbph4k2YOw7TVeY72OP');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-900 dark:text-white">Emily Wilson</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-gray-500" style="font-size: 12px;">remove</span>
+<span class="text-[10px] text-gray-500">No change</span>
+</div>
+</div>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">3,105</span>
+</div>
+<!-- Item 7 -->
+<div class="group flex items-center justify-between gap-3 rounded-full bg-surface-light dark:bg-surface-dark p-2 pr-5 shadow-sm transition hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex w-8 justify-center text-sm font-bold text-gray-500">7</span>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Portrait of a man smiling broadly" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChFBvyihKQBiFpoE4h9qBsLI5Hgj-3J30ZxyPsaELAawQMDblPmWsOtrjmi_huojjomT2mLtHfv7pd6QNc2JuDAcUe8dkQ_c2QDD-1rjc6jcgkg5NNfavAX7HXBZ2G30tHUyW5GDdH2gm7TbOfKzBb4vRllAU_FXGHtIo-3GWNHN3SIs1tUHV41vtx38RluwB6kko2HH_g9ALgbgvmn8_vA_Fn1KLhmaFLj1ITbc_R_eYVNWoYx7OOn37Pior4RIMxuQxVWn1gSA_G');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-900 dark:text-white">James Smith</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-size: 12px;">trending_up</span>
+<span class="text-[10px] text-gray-500">+120 XP</span>
+</div>
+</div>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">2,980</span>
+</div>
+<!-- Item 8 -->
+<div class="group flex items-center justify-between gap-3 rounded-full bg-surface-light dark:bg-surface-dark p-2 pr-5 shadow-sm transition hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex w-8 justify-center text-sm font-bold text-gray-500">8</span>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Portrait of a woman with red hair" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARNMhD7aPsE8H04D-aCI-8z1o1DM3ItcwZmAYoByG3lW-sXTWElyGSu5_80FN15TyFzlWYRvExDevlogHHfw53zn4V3aILobi2lQxFaetkHfFlTbNjKko0Fy6jw1tCFBbqhr3hVjPBt_WdBfC0UMWu19O3lg-INI75KgSasCd0dLfzOgEk5f98RqnO3A8O-sFMqPRYhgkWlUub1HIrqfIOpH4xxQIT309UXlzGCJP0twrL3bVQ0dPujwxV3TLtlpwBdehqpibFkgKl');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-900 dark:text-white">Linda Taylor</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500" style="font-size: 12px;">trending_up</span>
+<span class="text-[10px] text-gray-500">Rising star</span>
+</div>
+</div>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">2,850</span>
+</div>
+</div>
+</div>
+<!-- Sticky User Rank -->
+<div class="absolute bottom-0 left-0 right-0 z-30 pb-6 pt-2 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent px-4">
+<div class="relative flex items-center justify-between gap-3 rounded-full bg-[#203a2a] p-2 pr-5 shadow-2xl border border-primary/30 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<!-- User Rank Number -->
+<span class="flex w-8 justify-center text-sm font-bold text-primary">42</span>
+<!-- User Avatar -->
+<div class="h-10 w-10 rounded-full bg-cover bg-center ring-2 ring-primary" data-alt="Selfie of the current user" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ2YouytFxqcMb8NooCVsnWH4C19tas6VznGOdxfDm63PJ_1vbB7MsURjib7Heco0T9NekiE1mwYzfSd7eYWgw7UJrVcL0CwIZYisXYLWERty3fij1bZ5CdkDKnTWezMKw8JRVBLrZqyTvDiBfomexqWjjvcv3kFKOB6wN9_UFrEXzY3TabvhG4IZQvC_7-sD7HGZJMKyqRAsq27cSnt8-08r-8NIgSq_9iEEDRd4BZ6TSASqQ58228qj7-hYPEGiPZF-m2G7OGt3I');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white">You</span>
+<span class="text-[10px] text-gray-300">Keep pushing!</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-primary">1,200 XP</span>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="absolute bottom-24 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 shadow-[0_4px_20px_rgba(19,236,91,0.4)] transition hover:bg-primary-dark active:scale-95 group">
+<span class="material-symbols-outlined text-black transition-transform group-hover:rotate-12">swords</span>
+<span class="text-sm font-bold text-black">Challenge</span>
+</button>
+</div>
+</body></html>

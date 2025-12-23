@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doc Challenge Customization</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "primary-dark": "#0fb846",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#193322",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for better cross-browser consistency */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #13ec5b;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 10px rgba(19, 236, 91, 0.5);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #193322;
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display antialiased overflow-x-hidden text-slate-900 dark:text-white selection:bg-primary selection:text-background-dark">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-20 flex items-center bg-background-light dark:bg-background-dark/90 backdrop-blur-md p-4 pb-2 justify-between border-b border-black/5 dark:border-white/5">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Configure Challenge</h2>
+<div class="flex size-12 items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#92c9a4] cursor-pointer">help</span>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-4 gap-8 pb-32">
+<!-- Source Document Card -->
+<section>
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm border border-black/5 dark:border-white/5 group transition-transform active:scale-[0.99]">
+<div class="flex flex-col justify-center gap-1 flex-[2_2_0px]">
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Source Material</p>
+<p class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Biology Notes - Chapter 4: Cell Structure.pdf</p>
+<div class="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<p class="text-xs font-medium leading-normal">PDF Document • 12 Pages</p>
+</div>
+</div>
+<div class="w-24 bg-center bg-no-repeat bg-cover rounded-lg flex-none relative overflow-hidden shadow-inner" data-alt="Abstract green biology cell pattern texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqy99HwiR0DQk9GHt7v7KbAGHlGk4sHTt4QrVZsqgtWus7kVUYSNd7arPE892_Fgn0BMr9UjrPMrhbTrflv1o3FX64utQSIe8_eyEf2ZGL60Ouquh9zw_P9Fh9NTk3OEdOEwFNB2uhbnT4pWMrQaRQVFFn1KlxzzTziWpjt7lmimkGqDi7UR111Vabev12TddC1wOWfBjIvP1BznOMztMjzLNAq0MBPHomAXbJ4IYMGhRZtvZ_YMbUKpatDKiqRdDTQu0qwrWgIlJD");'>
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+</div>
+</section>
+<!-- Question Types -->
+<section>
+<div class="flex items-center justify-between px-1 mb-4">
+<h3 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Question Styles</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">3 Selected</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Selected Chip -->
+<div class="flex h-12 cursor-pointer items-center justify-start gap-x-3 rounded-full bg-primary pl-4 pr-4 shadow-[0_0_15px_rgba(19,236,91,0.3)] transition-all hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined text-background-dark">menu_book</span>
+<p class="text-background-dark text-sm font-bold leading-normal">Definitions</p>
+</div>
+<!-- Unselected Chip -->
+<div class="flex h-12 cursor-pointer items-center justify-start gap-x-3 rounded-full bg-surface-light dark:bg-surface-dark border border-black/5 dark:border-transparent pl-4 pr-4 transition-all hover:bg-black/5 dark:hover:bg-white/5 active:scale-95">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400">edit</span>
+<p class="text-slate-500 dark:text-white text-sm font-medium leading-normal">Fill-in-Blank</p>
+</div>
+<!-- Selected Chip -->
+<div class="flex h-12 cursor-pointer items-center justify-start gap-x-3 rounded-full bg-primary pl-4 pr-4 shadow-[0_0_15px_rgba(19,236,91,0.3)] transition-all hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined text-background-dark">check_circle</span>
+<p class="text-background-dark text-sm font-bold leading-normal">True/False</p>
+</div>
+<!-- Selected Chip -->
+<div class="flex h-12 cursor-pointer items-center justify-start gap-x-3 rounded-full bg-primary pl-4 pr-4 shadow-[0_0_15px_rgba(19,236,91,0.3)] transition-all hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined text-background-dark">format_list_bulleted</span>
+<p class="text-background-dark text-sm font-bold leading-normal">Multiple Choice</p>
+</div>
+</div>
+</section>
+<!-- Session Length Slider -->
+<section>
+<div class="flex items-end justify-between px-1 mb-6">
+<div>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-1">Session Length</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Cards per session</p>
+</div>
+<p class="text-primary text-2xl font-bold font-mono">20</p>
+</div>
+<div class="px-2">
+<input class="w-full h-2 bg-surface-light dark:bg-surface-dark rounded-lg appearance-none cursor-pointer" max="50" min="5" type="range" value="20"/>
+<div class="flex justify-between mt-3 text-xs font-medium text-slate-400 dark:text-slate-500">
+<span>5</span>
+<span>25</span>
+<span>50+</span>
+</div>
+</div>
+</section>
+<!-- Game Mode Toggle -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4 px-1">Game Mode</h3>
+<div class="bg-surface-light dark:bg-surface-dark p-1 rounded-full flex relative border border-black/5 dark:border-white/5">
+<!-- Active Indicator Background (Visual only, usually handled by JS/Framework, hardcoded here for design) -->
+<div class="absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] bg-slate-200 dark:bg-white/10 rounded-full shadow-sm z-0"></div>
+<button class="flex-1 relative z-10 py-3 text-center text-sm font-bold text-slate-900 dark:text-white rounded-full transition-colors">
+                     Standard
+                 </button>
+<button class="flex-1 relative z-10 py-3 text-center text-sm font-medium text-slate-500 dark:text-slate-400 rounded-full hover:text-slate-700 dark:hover:text-white transition-colors">
+                     Time Attack
+                 </button>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-3 px-3 text-center">
+                 Standard mode lets you learn at your own pace without any time pressure per card.
+             </p>
+</section>
+</div>
+<!-- Fixed Bottom Action Area -->
+<div class="fixed bottom-0 left-0 right-0 z-20">
+<!-- Gradient Fade -->
+<div class="h-12 w-full bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none"></div>
+<!-- Content Container -->
+<div class="bg-background-light dark:bg-background-dark px-4 pb-8 pt-2">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-sm">schedule</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Est. time: <span class="text-slate-900 dark:text-white font-bold">~8 mins</span></p>
+</div>
+<button class="w-full bg-primary hover:bg-primary-dark text-background-dark font-bold text-lg h-14 rounded-full shadow-[0_0_20px_rgba(19,236,91,0.4)] transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[24px]">play_arrow</span>
+                Start Challenge
+            </button>
+</div>
+</div>
+</body></html>

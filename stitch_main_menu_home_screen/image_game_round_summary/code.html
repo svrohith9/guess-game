@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Image Game Round Summary</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px -3px rgba(19, 236, 91, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden select-none">
+<!-- Main Container -->
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-y-auto no-scrollbar pb-32">
+<!-- TopAppBar -->
+<div class="sticky top-0 z-20 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer transition-opacity hover:opacity-70">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Round Complete!</h2>
+<div class="flex w-12 items-center justify-end cursor-pointer transition-opacity hover:opacity-70">
+<span class="material-symbols-outlined text-primary text-[24px]">ios_share</span>
+</div>
+</div>
+<!-- Score Hero Section -->
+<div class="flex flex-col items-center justify-center pt-6 pb-2 px-4 animate-fade-in">
+<div class="relative flex items-center justify-center">
+<!-- Outer Glow Ring -->
+<div class="absolute inset-0 rounded-full bg-primary/20 blur-xl"></div>
+<!-- Main Score Circle -->
+<div class="relative flex h-48 w-48 flex-col items-center justify-center rounded-full border-4 border-primary bg-background-dark shadow-neon z-10">
+<p class="text-primary text-sm font-bold uppercase tracking-widest mb-1">Total Score</p>
+<h1 class="text-white text-6xl font-extrabold tracking-tighter">850</h1>
+<div class="mt-2 flex items-center gap-1 rounded-full bg-primary/20 px-3 py-1">
+<span class="material-symbols-outlined text-primary text-[16px]">trending_up</span>
+<p class="text-primary text-xs font-bold">+12% vs avg</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ProfileStats (Secondary Stats) -->
+<div class="flex flex-wrap gap-3 px-4 py-6">
+<div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-primary/20 bg-primary/5 p-4 items-center text-center backdrop-blur-sm">
+<div class="flex items-center justify-center size-8 rounded-full bg-primary/10 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+<p class="text-slate-900 dark:text-white tracking-light text-2xl font-bold leading-tight">92%</p>
+<div class="flex items-center gap-2">
+<p class="text-slate-500 dark:text-gray-400 text-sm font-medium leading-normal">Accuracy</p>
+</div>
+</div>
+<div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-primary/20 bg-primary/5 p-4 items-center text-center backdrop-blur-sm">
+<div class="flex items-center justify-center size-8 rounded-full bg-primary/10 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+</div>
+<p class="text-slate-900 dark:text-white tracking-light text-2xl font-bold leading-tight">1m 45s</p>
+<div class="flex items-center gap-2">
+<p class="text-slate-500 dark:text-gray-400 text-sm font-medium leading-normal">Time Bonus</p>
+</div>
+</div>
+</div>
+<!-- ProgressBar -->
+<div class="flex flex-col gap-3 px-4 py-2">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal">Level 12 Progress</p>
+<p class="text-primary text-sm font-bold leading-normal">+150 XP</p>
+</div>
+<div class="h-4 rounded-full bg-slate-200 dark:bg-[#326744]/30 overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(19,236,91,0.5)]" style="width: 85%;"></div>
+</div>
+<p class="text-slate-500 dark:text-gray-400 text-xs font-normal leading-normal text-right">350 XP to Level 13</p>
+</div>
+<!-- HeadlineText -->
+<div class="flex flex-col pt-6 pb-2">
+<div class="flex items-center justify-between px-4 pb-2">
+<h2 class="text-slate-900 dark:text-white tracking-light text-[22px] font-bold leading-tight">Detected Insights</h2>
+<span class="text-primary text-sm font-medium cursor-pointer">View All</span>
+</div>
+</div>
+<!-- Carousel -->
+<div class="flex overflow-x-auto no-scrollbar pb-4 pl-4 pr-2 snap-x snap-mandatory">
+<div class="flex items-stretch gap-4">
+<!-- Card 1 -->
+<div class="snap-center flex w-64 shrink-0 flex-col gap-0 rounded-lg bg-white dark:bg-[#1a2e22] border border-slate-200 dark:border-[#326744]/50 overflow-hidden shadow-sm">
+<div class="relative h-40 w-full bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Close up of a fluffy domestic cat face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBCgascTSft2kdaZCmeE5HQmyRR9JCiX4ND6XVntljyeAj6EW4DA4fRi8XPzZ0_jdcklzxXTSKjs3VcO-Bf9rkjY0_FJ1VLNi2KEtFfDswqsmfphAnQTYlZENVgdPk0xg-5mTmX275O2jV5BvER3o9bJ_dO-sY3sBJsePbHUajc0M_SRw1JV0CfmKAts-EnP0oKC999yGP63_vey2-F-rCmAd3ovLlLdjU3IOZk_BUOr17T8fpG3m0AARCSPidotipTmpUgFxFetj7K");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">visibility</span>
+<span class="text-white text-xs font-bold">Cat</span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<p class="text-slate-900 dark:text-white text-lg font-bold leading-tight">The Domestic Cat</p>
+<p class="text-slate-600 dark:text-gray-300 text-sm font-normal leading-relaxed">
+                            Cats have a specialized collarbone that allows them to always land on their feet.
+                        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center flex w-64 shrink-0 flex-col gap-0 rounded-lg bg-white dark:bg-[#1a2e22] border border-slate-200 dark:border-[#326744]/50 overflow-hidden shadow-sm">
+<div class="relative h-40 w-full bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Blue passport on a wooden table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCu3omsCMU_3L3AlAUrhKnUwb2RNSrACdMTpZPTNHkKd-gPCfQ_Ph5AhQW1CDeWOxPF9G5dE1kd4FcuLOZtaheEmRBwrq8-si_DIIlmvaat4onFGCN8CPPJjYXtPWF4yzDlEKWjIfF1KsBeFnsqyi-uaPm_dvW-LjZph7rQcZbZb3F_GFx_wLY2zYI2sQ9yTV517vQihEHGUQqW6ACXoz286Kun6YmwvhkjdodWvkDgCxtOCc0NW9YeGirl5UWgO-jFHVZJ772Gu98");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">assignment</span>
+<span class="text-white text-xs font-bold">Passport</span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<p class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Travel Documents</p>
+<p class="text-slate-600 dark:text-gray-300 text-sm font-normal leading-relaxed">
+                            The first modern passports were introduced by King Henry V of England in the 15th century.
+                        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center flex w-64 shrink-0 flex-col gap-0 rounded-lg bg-white dark:bg-[#1a2e22] border border-slate-200 dark:border-[#326744]/50 overflow-hidden shadow-sm">
+<div class="relative h-40 w-full bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Abstract vibrant geometric shapes representing data" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiGcCXxysJZ2HAMf0vZq_qzOsLoUZ3tEyA6rZGnSKWm6anBsDHF4wpWlqlG6PJJLLDktkbxarSOXWsNgeaehsteYnFzfPSSShfUoEaNPyv6NXwS_TBjM8KWZ9w-drIx0qJwilndwtZpC37Xurjf3IEcn4Skhwzv0EHdk25c5Fq2qAxDnHyxo7JiTzAGsTzI6fLyB8jxDzYMTMGAzTvb5rorW9_S6QkeJs8tvg5_xcs5IirRMfxXf4AhDkRbloYbc619Oqr9b4iJO-Z");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">auto_awesome</span>
+<span class="text-white text-xs font-bold">Bonus</span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<p class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Perfect Streak</p>
+<p class="text-slate-600 dark:text-gray-300 text-sm font-normal leading-relaxed">
+                            You identified 5 objects in under 10 seconds! That's a new personal best.
+                        </p>
+</div>
+</div>
+<!-- Spacing at end -->
+<div class="w-2 shrink-0"></div>
+</div>
+</div>
+</div>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 left-0 right-0 z-30 p-4 pb-8 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent">
+<div class="flex flex-col gap-3 w-full max-w-md mx-auto">
+<button class="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="text-background-dark text-lg font-bold tracking-wide">New Challenge</span>
+<span class="material-symbols-outlined text-background-dark text-[24px]">arrow_forward</span>
+</button>
+<button class="flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 dark:border-primary/30 bg-white/50 dark:bg-black/20 px-6 py-3 transition-colors hover:bg-slate-100 dark:hover:bg-primary/10 backdrop-blur-md">
+<span class="material-symbols-outlined text-slate-700 dark:text-primary text-[20px]">replay</span>
+<span class="text-slate-700 dark:text-primary text-base font-bold tracking-wide">Replay Round</span>
+</button>
+</div>
+</div>
+</body></html>

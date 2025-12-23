@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gamified Flashcard App - Main Menu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#193322",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "none": "0",
+                        "sm": "0.125rem",
+                        "DEFAULT": "1rem", // 16px
+                        "md": "1.5rem", // 24px
+                        "lg": "2rem", // 32px
+                        "xl": "3rem", // 48px
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-body text-slate-900 dark:text-white selection:bg-primary selection:text-background-dark flex flex-col overflow-x-hidden">
+<header class="px-8 pt-16 pb-8">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-2">
+<span class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Welcome back</span>
+<h1 class="font-display text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                    Hello,<br/>Alex.
+                </h1>
+</div>
+<button class="relative group cursor-pointer transition-transform active:scale-95">
+<div class="h-14 w-14 rounded-full bg-center bg-cover border border-slate-200 dark:border-white/10 shadow-sm" data-alt="User profile image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAk4kyiDNiuKkdgLa79T3dT6fKBACJGXuAKL-sIJDE-V8isYN1kcTCoO8mukEHKfAtk1E3T69pUBithOtYHGV1DYf-lcXACdcfmPrWpN7l4YhxpG4eH5TYhVpIfam9mTTfeRdHBDDs0bHGRG3CA0JZBgTRrAkWUjUyj3S2vqWL7ZQxeW8_H8GYcRe6n5R1AKDdGAwq8xueF_mD5rWJUXC2Gd2sKTbe4p-9KhwsscdgFbSaIBy-j18I039B6Z-7T3cSDr6DLmVKGCmjP");'></div>
+<div class="absolute bottom-0 right-0 h-3.5 w-3.5 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></div>
+</button>
+</div>
+<div class="mt-6 flex items-center gap-6 text-sm font-semibold text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] icon-filled">local_fire_department</span>
+                5 Day Streak
+            </span>
+<span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] icon-filled">bolt</span>
+                Lvl 5
+            </span>
+</div>
+</header>
+<main class="flex-1 px-6 pb-12 flex flex-col justify-center max-w-lg mx-auto w-full gap-8">
+<div class="flex flex-col gap-5">
+<div class="px-2 flex justify-between items-end">
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Start Playing</h2>
+</div>
+<button class="relative w-full bg-white dark:bg-surface-dark p-4 pr-6 rounded-lg shadow-[0_2px_20px_-8px_rgba(0,0,0,0.05)] dark:shadow-none border border-slate-100 dark:border-white/5 hover:border-primary/40 transition-all duration-300 group active:scale-[0.98]">
+<div class="flex items-center gap-5">
+<div class="h-20 w-20 rounded-md bg-cover bg-center shadow-inner shrink-0 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Picture challenge thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaYGBVBUeoIrcPS8vTy6JEn9WT1ATh-_0AH4wgx5IZ_nXDyAMqsL9lzwgttIIEXZ1nsz70ywQdgi50ZFDKcUgqNjo6mSrkxiOU1LnF77XgA1hOIDnrLTe8R8sTwBkUMxvb6St_-vyxBcFKnyxQ5pltUBo5binUziFyl8nyJuVnmskyo3NssoYk2C4G2vrOv5bYe4CxwH6tRySiDlRUpzy0I1MM6zbrhJm8NOETUDagHmHgGSLSGE4PmGTW9zBW2ikoJsye-Xty_jK_");'></div>
+<div class="flex-1 text-left">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Picture Challenge</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">Identify real-world objects</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors">arrow_circle_right</span>
+</div>
+</button>
+<button class="relative w-full bg-white dark:bg-surface-dark p-4 pr-6 rounded-lg shadow-[0_2px_20px_-8px_rgba(0,0,0,0.05)] dark:shadow-none border border-slate-100 dark:border-white/5 hover:border-primary/40 transition-all duration-300 group active:scale-[0.98]">
+<div class="flex items-center gap-5">
+<div class="h-20 w-20 rounded-md bg-cover bg-center shadow-inner shrink-0 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Document challenge thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxlOHhAPQlhtHd9eKBraHcpW9in0WCsNuPV290M8vM79YksPWnt4Dohv_bO8HZkkfiacyts3abPGOch7VEy4GqgtL81NfxrqWIAIpH3yQOrMYUTvvisw8yrVEyGiiUpZXzSQO01QNsq7FK1QstEpRTBVMy0K0nn0torPZ39AHtIV8V4BUz7SHNiP9QZQPogtnFq0hgex6lCNudF57MDLSbAPx5DNfLaVN9K8Qu80_DXFKnURGxDJSePIhNrk5H9GoaW8rszpXzBe9V");'></div>
+<div class="flex-1 text-left">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Doc Challenge</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">Scan &amp; study documents</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors">arrow_circle_right</span>
+</div>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="px-2">
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Menu</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center gap-3 bg-white dark:bg-surface-dark p-6 rounded-lg border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all active:scale-[0.98] group">
+<div class="p-3 bg-slate-50 dark:bg-white/5 rounded-full text-slate-600 dark:text-slate-300 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl">emoji_events</span>
+</div>
+<span class="font-display font-bold text-base text-slate-800 dark:text-slate-100">Leaderboards</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 bg-white dark:bg-surface-dark p-6 rounded-lg border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all active:scale-[0.98] group">
+<div class="p-3 bg-slate-50 dark:bg-white/5 rounded-full text-slate-600 dark:text-slate-300 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl">person</span>
+</div>
+<span class="font-display font-bold text-base text-slate-800 dark:text-slate-100">Profile</span>
+</button>
+</div>
+</div>
+</main>
+<footer class="pb-8 text-center opacity-30">
+<div class="h-1 w-12 bg-slate-300 dark:bg-white/20 rounded-full mx-auto"></div>
+</footer>
+
+</body></html>

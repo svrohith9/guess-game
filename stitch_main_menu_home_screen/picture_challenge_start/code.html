@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Picture Challenge Start</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<!-- Decorative Gradient Mesh -->
+<div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-primary/5 via-primary/5 to-transparent pointer-events-none opacity-50 dark:opacity-20"></div>
+<!-- Header / Nav -->
+<div class="relative z-10 flex items-center justify-between p-6">
+<!-- Close Button -->
+<button class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+</button>
+<!-- Points / Gamification Element -->
+<div class="flex items-center gap-2 rounded-full bg-slate-200 dark:bg-white/5 px-4 py-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px; font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-sm font-bold">1,240 XP</span>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="relative z-10 flex flex-1 flex-col justify-center px-6 pt-4 pb-12">
+<!-- Hero Section -->
+<div class="mb-12 flex flex-col items-center text-center">
+<!-- Icon Illustration -->
+<div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/5 shadow-[0_0_30px_-10px_rgba(19,236,91,0.3)] border border-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-size: 48px;">center_focus_weak</span>
+</div>
+<h1 class="mb-3 text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-900 dark:text-white">
+                New Challenge
+            </h1>
+<p class="max-w-xs text-base font-medium leading-relaxed text-slate-500 dark:text-slate-400">
+                Feed the AI. Snap a document or object to generate flashcards instantly.
+            </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex w-full flex-col gap-4">
+<!-- Camera Button (Primary) -->
+<button class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-6 py-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_-5px_rgba(19,236,91,0.5)] active:scale-[0.98]">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 text-background-dark">
+<span class="material-symbols-outlined" style="font-size: 24px;">photo_camera</span>
+</div>
+<span class="text-lg font-bold text-background-dark tracking-wide">Take Photo</span>
+</button>
+<!-- Gallery Button (Secondary) -->
+<button class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10 px-6 py-4 transition-all duration-300 hover:bg-slate-300 dark:hover:bg-white/20 active:scale-[0.98]">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/50 dark:bg-white/10 text-slate-700 dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">image</span>
+</div>
+<span class="text-lg font-bold text-slate-900 dark:text-white tracking-wide">Upload from Gallery</span>
+</button>
+</div>
+</div>
+<!-- Recent Scans Footer -->
+<div class="relative z-10 w-full bg-white dark:bg-black/20 pb-8 pt-6 backdrop-blur-xl border-t border-slate-200 dark:border-white/5 rounded-t-[2.5rem]">
+<div class="mb-4 flex items-center justify-between px-8">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Recent Scans</h3>
+<button class="text-xs font-bold text-primary hover:text-primary/80 transition-colors">View All</button>
+</div>
+<div class="flex w-full gap-4 overflow-x-auto px-8 scrollbar-hide pb-4">
+<!-- Recent Item 1 -->
+<button class="group relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-transparent transition-all hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100" data-alt="A textbook open on a wooden desk with highlighted text" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA2cwn9cpL0FhkmBv99NXSmdtsRg_zZUDn7v5PSa7IbUmQHN3kBzgfJpLniiHRfF45Olsh9DUD95L0BsTyCMDu1uMPzQafXN-GLEBI60eIXK5Anz1G8AEjtXLMsxBQgMeJ5iocuyP9uv_Q2PWn33BnGpwZ3GIs9E5xrx_9wOzPnKZcbDbkJoaTmI80efAbzNFrzowSa-jJo7WiZHWBZZvfj-Tykuk79LmMhLs0zbzMLbfYnF4X3hAC55LYe4OnC75x4q1OLcBPhezf"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
+</button>
+<!-- Recent Item 2 -->
+<button class="group relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-transparent transition-all hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100" data-alt="Detailed notes written in a notebook with diagrams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9DoRwDsa9vHzIMnTASxPcAPIjBgK9Gsf9TCCAryGpNzte65UNt-agv_w6wAbuZwfB3a1v9nLTQPRJPdsbyIGBtelFzjtJOT1umyh9Jp-7MIuPqfueaeo1L7xJ54UZTQIrqa4SJ-bNwMqh1o5lT9y5391VYSJtF7ADIboom7u2cYjdGVFUmrZU4HcRLrgk2OQscud4_b5SV1G9C3J2O9GfEsZAl9mJE18ju8kbg1GeHAfcTcUpF80ot_3B7X9TR_uaZEL6-mBwSIk2"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
+</button>
+<!-- Recent Item 3 -->
+<button class="group relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-transparent transition-all hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100" data-alt="Biology textbook showing a diagram of a plant cell" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuOVfUieE5Awc1Aribax5e8xKFHgmw8Z4bPOt1t8p9ONF2IkE3-2w7urwUSgrBLZ7H_LwOeDfCZWHWR-W2hsvhYURhRQMYc6Ra10jktCl-aa_BUnzMo0iES2gLxhSOEX_cEtnqQbfYJ5L6iJ5yKobf_o1gmDXVXxe5uKmUkToWr0CfmkOlrfmPC3yxkKgNbbJ-cf3EBS4xuth5jvhUit2O42kQfXbrj_oxYhaqWi0dQFslVC4gamxmAYq0314KzarckJ8DjGbbsQO2"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
+</button>
+<!-- Recent Item 4 -->
+<button class="group relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-transparent transition-all hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100" data-alt="Whiteboard filled with mathematical formulas and charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXa__LgF_XvzPwVYkK_99HQQi4wC1u-a4md_eYKdWFAuSlZhd8KiGev6F2VyPTbCp3XPISg_8TPTc6hEcL6y5vV9HIHxoYU_UEJqyhtnAQyiJ6rBQ4KtCQb5pAcL9aGk-a9GtXFPKw3GOsHVW5Zvj3ZAmzA1IQU7xw9sEQHM5a1tnGXtk4Xx9piOEKMJ6_0QGfAHFSsXkpYJ84iLSBomK8VFpLM0x4WYlmjH7Fc-hCvdEJicj6aphtAptfaErzCYHyLGJiJTxR0jM3"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
+</button>
+<!-- Add New Placeholder (Visual Cue) -->
+<div class="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 dark:border-white/20 bg-transparent text-slate-400 dark:text-white/40">
+<span class="material-symbols-outlined" style="font-size: 20px;">history</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

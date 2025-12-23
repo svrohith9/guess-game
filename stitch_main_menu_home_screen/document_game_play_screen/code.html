@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Game Play Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "card-dark": "#1A2E22", // Custom slightly lighter shade for cards
+                        "input-dark": "#23482f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display antialiased selection:bg-primary selection:text-background-dark">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+<!-- Header Section -->
+<header class="flex items-center justify-between p-4 pt-6 pb-2">
+<!-- Close Button -->
+<button class="text-white hover:text-primary transition-colors flex size-10 shrink-0 items-center justify-center rounded-full active:bg-white/10">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<!-- Title -->
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">
+                Document Challenge
+            </h2>
+<!-- Pause Button -->
+<button class="flex size-10 items-center justify-center rounded-full text-white hover:text-primary transition-colors active:bg-white/10">
+<span class="material-symbols-outlined text-3xl">pause</span>
+</button>
+</header>
+<!-- Progress Section -->
+<div class="flex flex-col gap-3 px-6 py-2">
+<div class="flex items-center justify-between">
+<p class="text-white/80 text-sm font-medium leading-normal">Card 4 of 20</p>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+<p class="text-sm font-bold leading-normal tabular-nums">00:15</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="h-2 w-full rounded-full bg-white/10 overflow-hidden">
+<div class="h-full rounded-full bg-primary shadow-[0_0_10px_rgba(19,236,91,0.5)]" style="width: 20%;"></div>
+</div>
+</div>
+<!-- Main Content (Scrollable) -->
+<main class="flex-1 flex flex-col p-4 gap-6 @container">
+<!-- Flashcard Component -->
+<div class="relative w-full rounded-[2rem] bg-card-dark shadow-xl ring-1 ring-white/5 overflow-hidden flex flex-col group">
+<!-- Image Section -->
+<div class="relative w-full aspect-[4/3] bg-black/40 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" data-alt="Scientific diagram of a plant cell structure with labels" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBn5tU7jTRwG-f35dy_tYN4RU5AKvGdCABeADCyhqF5Gr5Bd0hoqh4WnwyEP7UZanplYTeOb7FfE4Owhq1dmDkiFrerinlU2mGr8hGNhJxChlkE1biXaE1EuKNN6IOGiCz1442pHSswvPzJ5jPPCw7qZbM3gMaOm0nrBKNv8BcWemKDO07NKCM5TqlcJmwwB2VRmks0z_7XYweZYHiEsr-QzbgI9m7qhGGJFoUkTed14q9y1Tc2v62hD2JEJp_H3LVPgjB3pCAbjkHd");'></div>
+<!-- Overlay Gradient for text readability if needed -->
+<div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card-dark to-transparent"></div>
+<!-- Floating Tag -->
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Biology</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="flex w-full flex-col gap-4 p-5">
+<div class="flex flex-col gap-1">
+<h3 class="text-white text-xl font-bold leading-snug tracking-tight">
+                            Identify the organelle marked in the diagram.
+                        </h3>
+<p class="text-white/60 text-base font-normal leading-relaxed">
+                            What is the primary function of the highlighted cell structure?
+                        </p>
+</div>
+<!-- Hints and Actions -->
+<div class="flex items-center justify-between pt-2">
+<button class="flex items-center gap-2 rounded-full bg-primary/10 pl-3 pr-4 py-2 text-primary hover:bg-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+<span class="text-sm font-bold">Hint (2)</span>
+</button>
+<button class="flex items-center gap-2 rounded-full text-white/70 hover:text-white transition-colors">
+<span class="text-sm font-medium">Flip Card</span>
+<span class="material-symbols-outlined text-[20px]">360</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="flex flex-col gap-2">
+<label class="sr-only" for="answer-input">Type your answer</label>
+<div class="relative">
+<input class="w-full rounded-2xl border-none bg-input-dark py-4 pl-5 pr-12 text-lg text-white placeholder:text-white/40 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark transition-all shadow-inner" id="answer-input" placeholder="Type your answer here..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none">
+<span class="material-symbols-outlined">keyboard</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Actions -->
+<footer class="p-4 pb-8 bg-background-dark/80 backdrop-blur-lg sticky bottom-0 z-10">
+<button class="w-full flex items-center justify-center gap-2 rounded-full bg-primary h-14 text-background-dark text-lg font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(19,236,91,0.3)]">
+<span>Submit Answer</span>
+<span class="material-symbols-outlined font-bold">arrow_forward</span>
+</button>
+</footer>
+</div>
+</body></html>
