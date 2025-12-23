@@ -41,14 +41,14 @@ export async function runOllama(
 
 export async function generateQuizFromImage(payload: unknown) {
   const prompt =
-    "You are a trivia-generator that looks at the real image pixels.\n" +
+    "You are a party-style trivia generator that looks at the real image pixels.\n" +
     "I will give you a low-level object list only to save time; you MUST verify every claim against the actual image before writing the question.\n" +
     "Rules\n" +
     "Return ONLY valid JSON, no commentary, no markdown code fence.\n" +
     "Write exactly 5 questions.\n" +
     "Use every type at least once: count, color, locate, text, memory.\n" +
-    "Each question must have 4 options (A-D) and answerIndex (0-3).\n" +
-    "Make questions simple, human-friendly, and unambiguous.\n" +
+    "Each question must have exactly 4 plain options as strings (no A), and answerIndex (0-3).\n" +
+    "Make questions simple, punchy, and playful.\n" +
     "Timer is always 10 s.\n" +
     "Do NOT ask about anything you cannot see in the pixels.\n" +
     "If an object is partially occluded, ask “visible” count only.\n" +
@@ -57,7 +57,7 @@ export async function generateQuizFromImage(payload: unknown) {
     "For locate questions, give 4 object names; the correct one must touch or be inside the target region.\n" +
     "If no text is detected, skip “text” type and add an extra “memory” question instead.\n" +
     "Output schema\n" +
-    "{\"questions\":[{\"q\":\"...\",\"type\":\"count|color|locate|text|memory\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answerIndex\":0,\"timer\":10}, ... ]}\n" +
+    "{\"questions\":[{\"q\":\"...\",\"type\":\"count|color|locate|text|memory\",\"options\":[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"],\"answerIndex\":0,\"timer\":10}, ... ]}\n" +
     "Step-by-step\n" +
     "Silently scan the entire image and confirm each bbox label.\n" +
     "Count exact visible instances.\n" +
@@ -74,10 +74,38 @@ export async function generateQuizFromImage(payload: unknown) {
     return {
       questions: [
         {
-          q: "What color dominates the image?",
+          q: "Quick count: how many objects do you see?",
+          type: "count",
+          options: ["1-2", "3-4", "5-6", "7+"],
+          answerIndex: 1,
+          timer: 10
+        },
+        {
+          q: "Color pop! Which color shows up the most?",
           type: "color",
           options: ["green", "blue", "red", "yellow"],
           answerIndex: 0,
+          timer: 10
+        },
+        {
+          q: "Top-left spotlight: what is up there?",
+          type: "locate",
+          options: ["cup", "book", "phone", "none"],
+          answerIndex: 3,
+          timer: 10
+        },
+        {
+          q: "Memory time! What object was most noticeable?",
+          type: "memory",
+          options: ["chair", "bottle", "plant", "lamp"],
+          answerIndex: 2,
+          timer: 10
+        },
+        {
+          q: "Did you spot any readable text?",
+          type: "text",
+          options: ["Yes", "No", "Maybe", "Not sure"],
+          answerIndex: 1,
           timer: 10
         }
       ]
