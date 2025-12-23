@@ -41,7 +41,29 @@ export async function runOllama(
 
 export async function generateQuizFromImage(payload: unknown) {
   const prompt =
-    "Return ONLY valid JSON with no commentary. Write simple, human-friendly questions. Always provide exactly 4 answer options. Schema: {questions:[{q:\"...\",type:\"count|color|locate|text|memory\",options:[\"A\",\"B\",\"C\",\"D\"],answerIndex:0,timer:10},...]}\n\n" +
+    "You are a trivia-generator that looks at the real image pixels.\n" +
+    "I will give you a low-level object list only to save time; you MUST verify every claim against the actual image before writing the question.\n" +
+    "Rules\n" +
+    "Return ONLY valid JSON, no commentary, no markdown code fence.\n" +
+    "Write exactly 5 questions.\n" +
+    "Use every type at least once: count, color, locate, text, memory.\n" +
+    "Each question must have 4 options (A-D) and answerIndex (0-3).\n" +
+    "Make questions simple, human-friendly, and unambiguous.\n" +
+    "Timer is always 10 s.\n" +
+    "Do NOT ask about anything you cannot see in the pixels.\n" +
+    "If an object is partially occluded, ask “visible” count only.\n" +
+    "For memory type: show the image for 3 s, then hide it and ask the question (the app will handle the hide/show; you just write the question).\n" +
+    "Prefer concrete, primary colours (red, blue, green, yellow, black, white, orange, purple, pink, brown, grey).\n" +
+    "For locate questions, give 4 object names; the correct one must touch or be inside the target region.\n" +
+    "If no text is detected, skip “text” type and add an extra “memory” question instead.\n" +
+    "Output schema\n" +
+    "{\"questions\":[{\"q\":\"...\",\"type\":\"count|color|locate|text|memory\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answerIndex\":0,\"timer\":10}, ... ]}\n" +
+    "Step-by-step\n" +
+    "Silently scan the entire image and confirm each bbox label.\n" +
+    "Count exact visible instances.\n" +
+    "Pick one clear colour per coloured object (ignore tiny highlights).\n" +
+    "Choose one prominent item to hide later for memory type.\n" +
+    "Build 5 questions accordingly; double-check answers against pixels.\n\n" +
     "Input:\n" +
     JSON.stringify(payload);
   try {
