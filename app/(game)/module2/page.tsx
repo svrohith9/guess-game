@@ -97,6 +97,9 @@ export default function Module2Page() {
         .filter((card) => settings.types.includes(card.type))
         .slice(0, settings.count)
         .map((card) => ({ ...card, sm2: initCard() }));
+      if (!selected.length) {
+        setErrorHint("No flashcards generated. Try a clearer document or check Ollama output.");
+      }
       setFlashcards(selected);
       setCurrentIndex(0);
       setCompleted(false);
@@ -217,7 +220,7 @@ export default function Module2Page() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Question Styles</p>
               <div className="mt-2 flex flex-wrap gap-2">
-                {(["definition", "fill", "truefalse", "mcq"] as const).map((type) => (
+                {(["fill", "truefalse", "mcq"] as const).map((type) => (
                   <button
                     key={type}
                     onClick={() => {

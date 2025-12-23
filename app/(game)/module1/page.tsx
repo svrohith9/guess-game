@@ -179,16 +179,21 @@ export default function Module1Page() {
       if (!ctx) return;
       canvas.width = img.width;
       canvas.height = img.height;
+      if (!canvas.width || !canvas.height) {
+        throw new Error("Image dimensions are zero");
+      }
       ctx.drawImage(img, 0, 0);
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const objects = await detectObjects(imageData);
       const texts = await detectText(imageData);
       const payload: DetectionPayload = { objects, texts };
       const result = await generateQuizFromImage(payload);
-      const enriched = (result.questions ?? []).map((q: GameQuestion, index: number) => ({
-        ...q,
-        bbox: objects[index]?.bbox
-      }));
+      const enriched = normalizeQuestions(result.questions ?? []).map(
+        (q: GameQuestion, index: number) => ({
+          ...q,
+          bbox: objects[index]?.bbox
+        })
+      );
       setQuestions(enriched);
       setQuestionIndex(0);
     } catch (error) {
@@ -265,6 +270,27 @@ export default function Module1Page() {
     return `#${toHex(Math.round(r / count))}${toHex(Math.round(g / count))}${toHex(
       Math.round(b / count)
     )}`;
+  };
+
+  const normalizeQuestions = (items: GameQuestion[]) => {
+    const fallbackOptions = ["A", "B", "C", "D"];
+    return items.map((item) => {
+      const options = Array.isArray(item.options) ? [...item.options] : [];
+      while (options.length < 4) {
+        options.push(fallbackOptions[options.length]);
+      }
+      const trimmed = options.slice(0, 4);
+      const answerIndex =
+        Number.isInteger(item.answerIndex) && item.answerIndex >= 0 && item.answerIndex < 4
+          ? item.answerIndex
+          : 0;
+      return {
+        ...item,
+        q: String(item.q ?? "Choose the best answer."),
+        options: trimmed,
+        answerIndex
+      };
+    });
   };
 
   const loadImage = (src: string) => {
