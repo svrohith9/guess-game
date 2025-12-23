@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
 
 export default function TopBar() {
   const { xp, streak } = useStore();
-  const [theme, setTheme] = useState("dark");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("gg-theme");
-    setTheme(saved ?? "dark");
-  }, []);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    return localStorage.getItem("gg-theme") ?? "dark";
+  });
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";

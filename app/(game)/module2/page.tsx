@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import FlashCardView from "./FlashCard";
@@ -34,6 +34,7 @@ export default function Module2Page() {
   const [completed, setCompleted] = useState(false);
   const [sessionActive, setSessionActive] = useState(false);
   const [palette, setPalette] = useState<"default" | "colorblind">("default");
+  const uploadInputRef = useRef<HTMLInputElement>(null);
   const offline = typeof window !== "undefined" && !navigator.onLine;
 
   useEffect(() => {
@@ -43,15 +44,8 @@ export default function Module2Page() {
   }, []);
 
   useEffect(() => {
-    loadState(PROGRESS_KEY, { flashcards: [], currentIndex: 0, fileName: null }).then((data) => {
-      if (data.flashcards?.length) {
-        setFlashcards(data.flashcards);
-        setCurrentIndex(data.currentIndex);
-        setFileName(data.fileName);
-        setSessionActive(true);
-      }
-    });
-  }, [setFlashcards, setCurrentIndex]);
+    resetSession();
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("gg-palette");
@@ -72,6 +66,15 @@ export default function Module2Page() {
   useEffect(() => {
     saveState(PROGRESS_KEY, { flashcards, currentIndex, fileName });
   }, [flashcards, currentIndex, fileName]);
+
+  const resetSession = async () => {
+    setFlashcards([]);
+    setCurrentIndex(0);
+    setFileName(null);
+    setCompleted(false);
+    setSessionActive(false);
+    await saveState(PROGRESS_KEY, { flashcards: [], currentIndex: 0, fileName: null });
+  };
 
   const currentCard = flashcards[currentIndex];
 
@@ -186,6 +189,20 @@ export default function Module2Page() {
           <p className="mt-2 text-sm text-white/70">
             Feed the AI your documents to generate your next battle scenario.
           </p>
+          <button
+            onClick={resetSession}
+            className="btn btn-sm mt-4 rounded-full btn-ghost"
+            aria-label="Clear previous session"
+          >
+            Clear previous session
+          </button>
+          <button
+            onClick={() => uploadInputRef.current?.click()}
+            className="btn btn-sm mt-4 rounded-full bg-emerald-400 text-black"
+            aria-label="Browse files"
+          >
+            Browse Files
+          </button>
           <label
             className="mt-4 flex flex-col items-center justify-center rounded-3xl border border-dashed border-emerald-400/60 bg-base-200/40 px-4 py-10 text-center"
             aria-label="Dropzone"
@@ -201,6 +218,7 @@ export default function Module2Page() {
             <p className="text-xs text-white/50">or browse your files</p>
             <p className="mt-2 text-xs text-white/50">Max file size: 10MB</p>
             <input
+              ref={uploadInputRef}
               type="file"
               accept=".pdf,.txt,.csv"
               className="hidden"
@@ -211,8 +229,8 @@ export default function Module2Page() {
             />
           </label>
           {fileName && <p className="mt-3 text-xs text-white/60">Loaded: {fileName}</p>}
-        {errorHint && <p className="mt-2 text-sm text-amber-200">{errorHint}</p>}
-      </div>
+          {errorHint && <p className="mt-2 text-sm text-amber-200">{errorHint}</p>}
+        </div>
 
       <div className="card-surface p-6">
         <h3 className="text-lg font-semibold text-white">Configure Challenge</h3>

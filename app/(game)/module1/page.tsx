@@ -55,6 +55,7 @@ export default function Module1Page() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const objectUrlRef = useRef<string | null>(null);
+  const uploadInputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<number>(Date.now());
 
   const { count, running, startCountdown } = useCountdown(3, () => {
@@ -447,18 +448,23 @@ export default function Module1Page() {
               </div>
             </div>
           )}
-          <label className="btn rounded-full bg-base-200 text-white" aria-label="Upload from gallery">
+          <button
+            onClick={() => uploadInputRef.current?.click()}
+            className="btn rounded-full bg-base-200 text-white"
+            aria-label="Upload from gallery"
+          >
             Upload from Gallery
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-                if (file) void handleFile(file);
-              }}
-            />
-          </label>
+          </button>
+          <input
+            ref={uploadInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (file) void handleFile(file);
+            }}
+          />
           <div
             className="rounded-2xl border border-dashed border-emerald-400/60 bg-base-200/40 p-6 text-center text-sm text-white/70"
             onDragOver={(event) => event.preventDefault()}
