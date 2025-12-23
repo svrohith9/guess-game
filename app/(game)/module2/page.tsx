@@ -15,6 +15,28 @@ import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 const PROGRESS_KEY = "doc-progress";
 const VALID_TYPES: FlashCardType["type"][] = ["mcq", "truefalse"];
 
+type RawCard = {
+  front?: string;
+  back?: string;
+  type?: string;
+  options?: unknown;
+  answerIndex?: unknown;
+};
+
+const toFlashCard = (card: RawCard): FlashCardType | null => {
+  if (!card.front || !card.back) return null;
+  const normalizedType = VALID_TYPES.includes(card.type as FlashCardType["type"])
+    ? (card.type as FlashCardType["type"])
+    : "truefalse";
+  return {
+    front: String(card.front),
+    back: String(card.back),
+    type: normalizedType,
+    options: Array.isArray(card.options) ? card.options.map(String) : undefined,
+    answerIndex: typeof card.answerIndex === "number" ? card.answerIndex : undefined
+  };
+};
+
 export default function Module2Page() {
   const { parseFile } = useDocParser();
   const { initCard, gradeCard } = useSM2();
@@ -91,15 +113,17 @@ export default function Module2Page() {
     setSessionActive(false);
     try {
       const rawText = await parseFile(file);
+      const candidates = extractCandidates(rawText);
       const result = await generateFlashcardsFromText(rawText);
       const selected = (result.flashcards ?? [])
-        .filter(
-          (card): card is FlashCardType =>
-            VALID_TYPES.includes(card.type as FlashCardType["type"])
-        )
+        .map((card) => toFlashCard(card as RawCard))
+        .filter((card): card is FlashCardType => card !== null)
         .filter((card) => settings.types.includes(card.type))
         .slice(0, settings.count)
-        .map((card) => ({ ...card, sm2: initCard() }));
+        .map((card) => ({
+          ...ensureOptions(card, candidates),
+          sm2: initCard()
+        }));
       if (!selected.length) {
         setErrorHint("No flashcards generated. Try a clearer document or check Ollama output.");
       }
@@ -348,3 +372,43 @@ export default function Module2Page() {
     </main>
   );
 }
+
+const extractCandidates = (text: string) => {
+  const candidates = new Set<string>();
+  const patterns = [
+    /\b[A-Z0-9]{6,}\b/g,
+    /\b\d{2}\/\d{2}\/\d{4}\b/g,
+    /\b\d{4}\b/g,
+    /\b\d{1,3},\d{3}\b/g,
+    /\b\d+\b/g,
+    /\b[A-Z]{2,}\b/g
+  ];
+  patterns.forEach((pattern) => {
+    const matches = text.match(pattern) ?? [];
+    matches.forEach((match) => {
+      if (match.length >= 2) candidates.add(match);
+    });
+  });
+  return Array.from(candidates).slice(0, 30);
+};
+
+const ensureOptions = (card: FlashCardType, candidates: string[]): FlashCardType => {
+  const prompt = card.front.trim();
+  const isQuestion =
+    prompt.endsWith("?") || /^(what|when|where|how|which|who|why)\b/i.test(prompt);
+  const normalizedType =
+    card.type === "truefalse" && isQuestion ? "mcq" : (card.type as FlashCardType["type"]);
+  if (normalizedType === "truefalse") {
+    return { ...card, options: ["True", "False"], answerIndex: card.answerIndex ?? 0 };
+  }
+  const correct = card.back.trim();
+  const pool = candidates.filter((c) => c !== correct);
+  const options = [correct, ...pool.slice(0, 3)];
+  const filled = options.concat(["Option B", "Option C", "Option D"]).slice(0, 4);
+  return {
+    ...card,
+    type: "mcq",
+    options: filled,
+    answerIndex: 0
+  };
+};

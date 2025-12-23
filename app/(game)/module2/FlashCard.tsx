@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FlashCard as CardType } from "@/lib/store";
 
 type FlashCardProps = {
@@ -13,10 +13,17 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [seconds, setSeconds] = useState(15);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
+  const [locked, setLocked] = useState(false);
+  const timersRef = useRef<number[]>([]);
 
   useEffect(() => {
     setFlipped(false);
     setSeconds(15);
+    setFeedback(null);
+    setLocked(false);
+    timersRef.current.forEach((id) => window.clearTimeout(id));
+    timersRef.current = [];
   }, [card]);
 
   useEffect(() => {
@@ -55,6 +62,31 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
         : 0
       : 0;
 
+  const handleOption = (index: number) => {
+    if (locked) return;
+    setLocked(true);
+    const isCorrect = index === answerIndex;
+    if (isCorrect) {
+      setFeedback("correct");
+      const id = window.setTimeout(() => {
+        setFeedback(null);
+        setLocked(false);
+        onSubmit(true);
+      }, 900);
+      timersRef.current.push(id);
+      return;
+    }
+    setFeedback("wrong");
+    setFlipped(true);
+    const id = window.setTimeout(() => {
+      setFlipped(false);
+      setFeedback(null);
+      setLocked(false);
+      onSubmit(false);
+    }, 1400);
+    timersRef.current.push(id);
+  };
+
   return (
     <div className="relative">
       {timed && (
@@ -66,6 +98,13 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
         }`}
         style={{ transformStyle: reduceMotion ? "flat" : "preserve-3d" }}
       >
+        {feedback === "correct" && (
+          <div className="absolute inset-0 z-10 grid place-items-center">
+            <div className="graffiti-pop rounded-full bg-emerald-400/90 px-6 py-3 text-lg font-semibold text-black">
+              Correct!
+            </div>
+          </div>
+        )}
         <div className="space-y-4" style={{ backfaceVisibility: "hidden" }}>
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Prompt</p>
           <h2 className="text-xl font-semibold text-white">{card.front}</h2>
@@ -73,8 +112,15 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
             {derivedOptions.map((option, index) => (
               <button
                 key={`${option}-${index}`}
-                onClick={() => onSubmit(index === answerIndex)}
-                className="btn rounded-full bg-base-200 text-white"
+                onClick={() => handleOption(index)}
+                disabled={locked}
+                className={`btn rounded-full text-white ${
+                  feedback === "wrong" && index === answerIndex
+                    ? "bg-emerald-400 text-black"
+                    : feedback === "wrong" && index !== answerIndex
+                    ? "bg-red-500/70"
+                    : "bg-base-200"
+                }`}
                 aria-label={`Answer option ${index + 1}`}
               >
                 {option}
@@ -94,7 +140,9 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
           style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
         >
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Answer</p>
-          <h2 className="mt-4 text-xl font-semibold">{card.back}</h2>
+          <h2 className="mt-4 text-xl font-semibold">
+            {derivedOptions[answerIndex] ?? card.back}
+          </h2>
           <button
             onClick={() => setFlipped(false)}
             className="btn btn-ghost mt-6"
