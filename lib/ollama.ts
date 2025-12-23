@@ -85,9 +85,28 @@ export async function generateQuizFromImage(payload: unknown) {
   }
 }
 
-export async function generateFlashcardsFromText(text: string) {
+export async function generateFlashcardsFromText(
+  text: string,
+  types: Array<"mcq" | "truefalse">
+) {
+  const typeHint =
+    types.length === 1 ? `Use only ${types[0]}.` : `Types: ${types.join(", ")}.`;
   const prompt =
-    "Return ONLY valid JSON with no commentary. Use only types: mcq or truefalse. For mcq, include 4 options and answerIndex. For truefalse, include options [\"True\",\"False\"] and answerIndex.\n" +
+    "You are a flash-card generator that reads the supplied text verbatim.\n" +
+    "You MUST use only the facts that actually appear.\n" +
+    "Never invent numbers, dates, or names.\n" +
+    "Rules\n" +
+    "Return ONLY valid JSON, no commentary, no code fence.\n" +
+    "Create 12 cards.\n" +
+    typeHint +
+    "MCQ: exactly 4 options (A-D) and answerIndex (0-3). Options must be plausible, same style/length, and not obviously correct.\n" +
+    "True/False: options [\"True\",\"False\"] and answerIndex 0 or 1.\n" +
+    "Make questions non-trivial: ask about deductibles, limits, VIN prefix, policy length, mailing address, company name, etc.\n" +
+    "Copy dates, dollar amounts, and proper nouns exactly as written.\n" +
+    "If a numeric value contains a comma, keep it.\n" +
+    "Avoid duplicate questions.\n" +
+    "Avoid using the correct answer as the only numeric or proper noun in the options.\n" +
+    "Keep wording simple and unambiguous.\n" +
     "Schema: {flashcards:[{front:\"...\",back:\"...\",type:\"mcq|truefalse\",options:[\"A\",\"B\",\"C\",\"D\"],answerIndex:0},...]}\n\n" +
     "Input:\n" +
     text;

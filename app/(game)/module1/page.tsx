@@ -6,13 +6,15 @@ import TopBar from "@/components/TopBar";
 import Modal from "@/components/Modal";
 import Countdown from "@/components/Countdown";
 import Hearts from "@/components/Hearts";
-import ImageCanvas from "./ImageCanvas";
-import QuestionOverlay from "./QuestionOverlay";
+import dynamic from "next/dynamic";
 import { generateQuizFromImage } from "@/lib/ollama";
 import { useCountdown } from "@/hooks/useCountdown";
 import { queueWrite, flushQueue, storeFile } from "@/lib/storage";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { GameQuestion, useStore } from "@/lib/store";
+
+const ImageCanvas = dynamic(() => import("./ImageCanvas"), { ssr: false });
+const QuestionOverlay = dynamic(() => import("./QuestionOverlay"), { ssr: false });
 
 type DetectedObject = {
   label: string;

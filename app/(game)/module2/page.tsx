@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import TopBar from "@/components/TopBar";
-import FlashCardView from "./FlashCard";
 import { useDocParser } from "./Parser";
 import { generateFlashcardsFromText } from "@/lib/ollama";
 import { useSM2 } from "@/hooks/useSM2";
@@ -11,6 +11,8 @@ import type { FlashCard as FlashCardType } from "@/lib/store";
 import { useStore } from "@/lib/store";
 import { flushQueue, queueWrite, saveState, loadState } from "@/lib/storage";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
+
+const FlashCardView = dynamic(() => import("./FlashCard"), { ssr: false });
 
 const PROGRESS_KEY = "doc-progress";
 const VALID_TYPES: FlashCardType["type"][] = ["mcq", "truefalse"];
@@ -114,7 +116,7 @@ export default function Module2Page() {
     try {
       const rawText = await parseFile(file);
       const candidates = extractCandidates(rawText);
-      const result = await generateFlashcardsFromText(rawText);
+      const result = await generateFlashcardsFromText(rawText, settings.types as Array<"mcq" | "truefalse">);
       const selected = (result.flashcards ?? [])
         .map((card) => toFlashCard(card as RawCard))
         .filter((card): card is FlashCardType => card !== null)
@@ -375,40 +377,76 @@ export default function Module2Page() {
 
 const extractCandidates = (text: string) => {
   const candidates = new Set<string>();
-  const patterns = [
-    /\b[A-Z0-9]{6,}\b/g,
-    /\b\d{2}\/\d{2}\/\d{4}\b/g,
-    /\b\d{4}\b/g,
-    /\b\d{1,3},\d{3}\b/g,
-    /\b\d+\b/g,
-    /\b[A-Z]{2,}\b/g
-  ];
-  patterns.forEach((pattern) => {
-    const matches = text.match(pattern) ?? [];
-    matches.forEach((match) => {
-      if (match.length >= 2) candidates.add(match);
-    });
+  const dates = new Set<string>();
+  const money = new Set<string>();
+  const ids = new Set<string>();
+  const years = new Set<string>();
+  const words = new Set<string>();
+  const dateMatches = text.match(/\b\d{2}\/\d{2}\/\d{4}\b/g) ?? [];
+  dateMatches.forEach((m) => dates.add(m));
+  const moneyMatches = text.match(/\b\d{1,3},\d{3}\b/g) ?? [];
+  moneyMatches.forEach((m) => money.add(m));
+  const idMatches = text.match(/\b[A-Z0-9]{6,}\b/g) ?? [];
+  idMatches.forEach((m) => ids.add(m));
+  const yearMatches = text.match(/\b\d{4}\b/g) ?? [];
+  yearMatches.forEach((m) => years.add(m));
+  const wordMatches = text.match(/\b[A-Z]{3,}\b/g) ?? [];
+  wordMatches.forEach((m) => words.add(m));
+  [dates, money, ids, years, words].forEach((set) => {
+    set.forEach((item) => candidates.add(item));
   });
-  return Array.from(candidates).slice(0, 30);
+  return {
+    all: Array.from(candidates),
+    dates: Array.from(dates),
+    money: Array.from(money),
+    ids: Array.from(ids),
+    years: Array.from(years),
+    words: Array.from(words)
+  };
 };
 
-const ensureOptions = (card: FlashCardType, candidates: string[]): FlashCardType => {
+const ensureOptions = (
+  card: FlashCardType,
+  candidates: ReturnType<typeof extractCandidates>
+): FlashCardType => {
   const prompt = card.front.trim();
   const isQuestion =
     prompt.endsWith("?") || /^(what|when|where|how|which|who|why)\b/i.test(prompt);
   const normalizedType =
     card.type === "truefalse" && isQuestion ? "mcq" : (card.type as FlashCardType["type"]);
   if (normalizedType === "truefalse") {
-    return { ...card, options: ["True", "False"], answerIndex: card.answerIndex ?? 0 };
+    const options = shuffleArray(["True", "False"]);
+    const correct = card.back.trim().toLowerCase().startsWith("f") ? "False" : "True";
+    const answerIndex = options.indexOf(correct);
+    return { ...card, type: "truefalse", options, answerIndex };
   }
   const correct = card.back.trim();
-  const pool = candidates.filter((c) => c !== correct);
-  const options = [correct, ...pool.slice(0, 3)];
+  const pool = pickPool(correct, candidates);
+  const options = [correct, ...pool.filter((c) => c !== correct).slice(0, 3)];
   const filled = options.concat(["Option B", "Option C", "Option D"]).slice(0, 4);
+  const shuffled = shuffleArray(filled);
+  const answerIndex = shuffled.indexOf(correct);
   return {
     ...card,
     type: "mcq",
-    options: filled,
-    answerIndex: 0
+    options: shuffled,
+    answerIndex: answerIndex === -1 ? 0 : answerIndex
   };
+};
+
+const pickPool = (correct: string, candidates: ReturnType<typeof extractCandidates>) => {
+  if (/\d{2}\/\d{2}\/\d{4}/.test(correct)) return candidates.dates;
+  if (/\d{1,3},\d{3}/.test(correct)) return candidates.money;
+  if (/^[A-Z0-9]{6,}$/.test(correct)) return candidates.ids;
+  if (/^\d{4}$/.test(correct)) return candidates.years;
+  return candidates.words.length ? candidates.words : candidates.all;
+};
+
+const shuffleArray = <T,>(items: T[]) => {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
 };

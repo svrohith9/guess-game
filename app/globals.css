@@ -20,6 +20,61 @@ body {
   @apply bg-base-200/70 border border-base-300/40 rounded-2xl shadow-xl backdrop-blur;
 }
 
+.flip-card {
+  perspective: 1200px;
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-inner {
+  position: relative;
+  min-height: 320px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(0);
+}
+
+.flip-front {
+  transform: rotateY(0deg) translateZ(0);
+}
+
+.flip-back {
+  transform: rotateY(180deg) translateZ(0);
+}
+
+.flip-show-back {
+  transform: rotateY(180deg);
+}
+
+@keyframes graffiti-pop {
+  0% {
+    transform: scale(0.6) rotate(-8deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) rotate(4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.graffiti-pop {
+  animation: graffiti-pop 0.4s ease-out;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.5);
+}
+
 @layer utilities {
   .rotate-y-180 {
     transform: rotateY(180deg);

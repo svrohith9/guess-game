@@ -88,15 +88,14 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flip-card">
       {timed && (
         <div className="absolute right-4 top-4 text-xs text-emerald-200">00:{seconds}</div>
       )}
       <div
-        className={`card-surface p-6 ${reduceMotion ? "" : "transition-transform duration-500"} ${
-          flipped ? "rotate-y-180" : "rotate-y-0"
+        className={`card-surface p-6 flip-inner ${reduceMotion ? "" : "transition-transform duration-500"} ${
+          flipped ? "flip-show-back" : ""
         }`}
-        style={{ transformStyle: reduceMotion ? "flat" : "preserve-3d" }}
       >
         {feedback === "correct" && (
           <div className="absolute inset-0 z-10 grid place-items-center">
@@ -105,7 +104,7 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
             </div>
           </div>
         )}
-        <div className="space-y-4" style={{ backfaceVisibility: "hidden" }}>
+        <div className="space-y-4 flip-face flip-front">
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Prompt</p>
           <h2 className="text-xl font-semibold text-white">{card.front}</h2>
           <div className="mt-6 grid gap-3">
@@ -135,21 +134,11 @@ export default function FlashCard({ card, onSubmit, timed }: FlashCardProps) {
             </button>
           </div>
         </div>
-        <div
-          className="absolute inset-0 p-6 text-white"
-          style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
-        >
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Answer</p>
-          <h2 className="mt-4 text-xl font-semibold">
+        <div className="absolute inset-0 p-6 text-white flip-face flip-back">
+          <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Correct answer</p>
+          <h2 className="mt-4 text-2xl font-semibold">
             {derivedOptions[answerIndex] ?? card.back}
           </h2>
-          <button
-            onClick={() => setFlipped(false)}
-            className="btn btn-ghost mt-6"
-            aria-label="Back to prompt"
-          >
-            Back
-          </button>
         </div>
       </div>
     </div>
