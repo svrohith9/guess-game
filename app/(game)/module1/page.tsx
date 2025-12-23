@@ -361,7 +361,9 @@ export default function Module1Page() {
       <section className="mt-6 grid gap-6">
         <div className="relative">
           <ImageCanvas imageUrl={imageUrl} highlight={highlight} />
-          {currentQuestion && <div className="absolute inset-0 bg-black/35" />}
+          {currentQuestion && (
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" />
+          )}
           <Countdown count={count} visible={running} />
           <QuestionOverlay question={currentQuestion} onAnswer={handleAnswer} secondsLeft={secondsLeft} />
         </div>
